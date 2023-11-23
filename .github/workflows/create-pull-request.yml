@@ -19,6 +19,7 @@ jobs:
         with:
           base: master
           head: stage
+          show-others-group: false
 
       - name: Create Pull Request
         id: create-pull-request
