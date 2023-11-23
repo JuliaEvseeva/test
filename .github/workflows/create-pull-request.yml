@@ -19,7 +19,6 @@ jobs:
         with:
           base: master
           head: stage
-          show-others-group: false
 
       - name: Create Pull Request
         id: create-pull-request
@@ -29,7 +28,7 @@ jobs:
           source_branch: stage
           target_branch: master
           title: "Release updates from `stage` into `master`"
-          body: ${{ steps.associated-pull-requests.outputs.body }}
+          body: ${{ steps.associated-pull-requests.outputs.body-others }}
           label: release
           get_diff: true
           draft: true
