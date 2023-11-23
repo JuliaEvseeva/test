@@ -1,0 +1,15 @@
+name: List merged Pull Request in the Release
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches: [stage]
+
+jobs:
+  example:
+    name: Release management comment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment on PR
+        uses: tiwanari/list-merged-pull-requests@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
