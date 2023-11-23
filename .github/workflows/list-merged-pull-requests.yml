@@ -2,7 +2,7 @@ name: List merged Pull Request in the Release
 on:
   pull_request:
     branches:
-      - stage
+      - master
 
 jobs:
   list-merged-pull-requests:
