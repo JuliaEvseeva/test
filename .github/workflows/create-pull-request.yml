@@ -13,6 +13,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: List associated Pull Requests
+        id: associated-pull-requests
+        uses: int128/list-associated-pull-requests-action@v1
+        with:
+          base: master
+          head: stage
+
       - name: Create Pull Request
         id: create-pull-request
         uses: devops-infra/action-pull-request@v0.5.5
@@ -21,7 +28,7 @@ jobs:
           source_branch: stage
           target_branch: master
           title: "Release updates from `stage` into `master`"
-          template: .github/templates/pull-request-template.md
+          body: ${{ steps.associated-pull-requests.outputs.body }}
           label: release
           get_diff: true
           draft: true
