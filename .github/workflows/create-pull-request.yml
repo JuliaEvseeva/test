@@ -29,7 +29,7 @@ jobs:
           target_branch: master
           title: "Release updates from `stage` into `master`"
           template: .github/templates/pull-request-template.md
-          old_string: "Other"
+          old_string: "<!-- Description here -->"
           new_string: ${{ steps.associated-pull-requests.outputs.body }}
           label: release
           get_diff: true
