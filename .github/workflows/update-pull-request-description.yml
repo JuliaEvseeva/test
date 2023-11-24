@@ -21,7 +21,6 @@ jobs:
         with:
           base: master
           head: stage
-          group-by-paths: ""
 
       - name: Update PR Description
         uses: nefrob/pr-description@v1.1.1
