@@ -1,6 +1,7 @@
 This PR releases all the changes...
 
-<!-- Description here -->
+<!-- Custom description - START -->
+<!-- Custom description - END -->
 
 
 <!-- Diff summary - START -->
