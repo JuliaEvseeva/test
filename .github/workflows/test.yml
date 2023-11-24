@@ -5,7 +5,7 @@ on:
     types:
       - synchronize
     branches:
-      - master
+      - stage
 
 jobs:
   update-description:
