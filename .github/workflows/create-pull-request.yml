@@ -20,6 +20,14 @@ jobs:
           base: master
           head: stage
 
+      - name: Update PR Description
+        uses: nefrob/pr-description@v1.1.1
+        with:
+          content: "<!-- start regex match -->New content!<!-- end regex match -->"
+          regex: "<!-- start regex match -->.*?<!-- end regex match -->"
+          regexFlags: ims
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create Pull Request
         id: create-pull-request
         uses: devops-infra/action-pull-request@v0.5.5
@@ -28,9 +36,7 @@ jobs:
           source_branch: stage
           target_branch: master
           title: "Release updates from `stage` into `master`"
-          template: .github/templates/pull-request-template.md
-          old_string: "<!-- Custom description - START -->.*?<!-- Custom description - END -->"
-          new_string: ${{ steps.associated-pull-requests.outputs.body }}
+          body: ${{ steps.associated-pull-requests.outputs.body }}
           label: release
           get_diff: true
           draft: true
