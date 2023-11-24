@@ -24,7 +24,7 @@ jobs:
         uses: kt3k/update-pr-description@v2
         with:
           pr_body: ${{ steps.associated-pull-requests.outputs.body }}
-          destination_branch: stage
+          destination_branch: master
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Pull Request
