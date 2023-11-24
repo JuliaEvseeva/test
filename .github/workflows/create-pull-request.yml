@@ -20,6 +20,13 @@ jobs:
           base: master
           head: stage
 
+      - name: update-pull-request
+        uses: kt3k/update-pr-description@v2
+        with:
+          pr_body: ${{ steps.associated-pull-requests.outputs.body }}
+          destination_branch: stage
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create Pull Request
         id: create-pull-request
         uses: devops-infra/action-pull-request@v0.5.5

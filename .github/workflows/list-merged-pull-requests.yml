@@ -1,8 +1,5 @@
 name: List merged Pull Request in the Release
-on:
-  pull_request:
-    branches:
-      - master
+on: workflow_dispatch
 
 jobs:
   list-merged-pull-requests:
