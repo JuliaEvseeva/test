@@ -2,7 +2,10 @@ name: Update PR description
 
 on:
   pull_request:
-    types: [synchronize]
+    types:
+      - synchronize
+    branches:
+      - master
 
 jobs:
   update-description:
@@ -23,6 +26,9 @@ jobs:
         uses: nefrob/pr-description@v1.1.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          content: "<!-- PR description - START -->${{ steps.associated-pull-requests.outputs.body }}<!-- PR description - END -->"
+          content: |
+            <!-- PR description - START -->$
+            {{ steps.associated-pull-requests.outputs.body }}
+            <!-- PR description - END -->
           regex: "<!-- PR description - START -->.*?<!-- PR description - END -->"
           regexFlags: ims
