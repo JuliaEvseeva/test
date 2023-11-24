@@ -20,6 +20,14 @@ jobs:
           base: master
           head: stage
 
+      - name: Update PR Description
+        uses: nefrob/pr-description@v1.1.1
+        with:
+          content: "<!-- start regex match -->${{ steps.associated-pull-requests.outputs.body }}<!-- end regex match -->"
+          regex: "<!-- start regex match -->.*?<!-- end regex match -->"
+          regexFlags: ims
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create Pull Request
         id: create-pull-request
         uses: devops-infra/action-pull-request@v0.5.5
