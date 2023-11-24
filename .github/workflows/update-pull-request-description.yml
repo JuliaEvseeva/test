@@ -1,4 +1,4 @@
-name: Update PR description
+name: Update Release PR description
 
 on:
   pull_request:
@@ -27,8 +27,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           content: |
-            <!-- PR description - START -->
+            <!-- List of changes -start -->
             ${{ steps.associated-pull-requests.outputs.body }}
-            <!-- PR description - END -->
-          regex: "<!-- PR description - START -->.*?<!-- PR description - END -->"
+            <!-- List of changes -end -->
+          regex: "<!-- List of changes -start -->.*?<!-- List of changes -end -->"
           regexFlags: ims

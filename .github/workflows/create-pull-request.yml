@@ -29,11 +29,8 @@ jobs:
           target_branch: master
           title: "Release updates from `stage` into `master`"
           template: .github/templates/pull-request-template.md
-          old_string: "<!-- Description -->"
+          old_string: "<!-- List of PRs -->"
           new_string: ${{ steps.associated-pull-requests.outputs.body }}
           label: release
-          get_diff: true
+          get_diff: false
           draft: true
-
-      - name: Print Title of PR
-        run: echo The Title of your PR is ${{ github.event.pull_request.title }}
