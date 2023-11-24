@@ -28,7 +28,7 @@ jobs:
           source_branch: stage
           target_branch: master
           title: "Release updates from `stage` into `master`"
-          body: ${{ steps.associated-pull-requests.outputs.body }}
+          body: ${{ steps.associated-pull-requests.outputs.body-others }}
           label: release
           get_diff: true
           draft: true
