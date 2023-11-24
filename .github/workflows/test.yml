@@ -1,0 +1,34 @@
+name: Update PR description
+
+on:
+  pull_request:
+    types:
+      - synchronize
+    branches:
+      - master
+
+jobs:
+  update-description:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: List associated Pull Requests
+        id: associated-pull-requests
+        uses: int128/list-associated-pull-requests-action@v1
+        with:
+          base: master
+          head: stage
+
+      - name: Update PR Description
+        uses: nefrob/pr-description@v1.1.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          content: |
+            <!-- PR description - START -->
+            ${{ steps.associated-pull-requests.outputs.body }}
+            <!-- PR description - END -->
+          regex: "<!-- PR description - START -->.*?<!-- PR description - END -->"
+          regexFlags: ims

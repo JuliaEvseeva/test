@@ -37,11 +37,3 @@ jobs:
 
       - name: Print Title of PR
         run: echo The Title of your PR is ${{ github.event.pull_request.title }}
-
-      - name: Update PR Description
-        uses: nefrob/pr-description@v1.1.1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          content: "<!-- PR description - START -->New content here<!-- PR description - END -->"
-          regex: "<!-- PR description - START -->.*?<!-- PR description - END -->"
-          regexFlags: ims
