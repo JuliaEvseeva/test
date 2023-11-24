@@ -1,9 +1,6 @@
 name: Update Pull Request Description
 
 on:
-  pull_request:
-    branches:
-      - master
   push:
     branches:
       - stage
@@ -18,8 +15,8 @@ jobs:
       - name: Update PR Description
         uses: nefrob/pr-description@v1.1.1
         with:
-          content: "<!-- start regex match -->New content!<!-- end regex match -->"
-          regex: "<!-- start regex match -->.*?<!-- end regex match -->"
+          content: "<!-- PR description - START -->New content here<!-- PR description - END -->"
+          regex: "<!-- PR description - START -->.*?<!-- PR description - END -->"
           regexFlags: ims
           token: ${{ secrets.GITHUB_TOKEN }}
 
