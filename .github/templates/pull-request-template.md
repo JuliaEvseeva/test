@@ -1,7 +1,5 @@
 This PR releases all the changes...
 
-<!-- Description here -->
-
-
-<!-- Diff summary - START -->
-<!-- Diff summary - END -->
+<!-- PR description - START -->
+<!-- Description -->
+<!-- PR description - END -->
