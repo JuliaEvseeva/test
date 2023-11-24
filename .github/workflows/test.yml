@@ -27,8 +27,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           content: |
-            <!-- PR description - START -->$
-            {{ steps.associated-pull-requests.outputs.body }}
+            <!-- PR description - START -->
+            ${{ steps.associated-pull-requests.outputs.body }}
             <!-- PR description - END -->
           regex: "<!-- PR description - START -->.*?<!-- PR description - END -->"
           regexFlags: ims
