@@ -1,0 +1,20 @@
+/resources
+public
+_vendor
+node_modules
+.hugo_build.lock
+jsconfig.json
+
+# IntelliJ IDEA modules and interim config files
+*.iml
+.idea/*.xml
+.idea/.name
+.idea/artifacts
+.idea/libraries
+.idea/modules
+.idea/shelf
+
+!.idea/codeStyles/
+!.idea/copyright/
+
+.DS_Store

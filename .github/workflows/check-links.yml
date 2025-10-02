@@ -1,0 +1,72 @@
+name: Check links
+
+on: pull_request
+
+env:
+  HUGO_VERSION: 0.147.8
+  WORKING_DIR: _hugo-site
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: ${{ env.HUGO_VERSION }}
+          extended: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Restore lychee cache
+        uses: actions/cache@v4
+        with:
+          path: .lycheecache
+          key: cache-lychee-${{ runner.os }}-${{ github.ref_name }}
+          restore-keys: |
+            cache-lychee-${{ runner.os }}-
+            cache-lychee-
+
+      - name: Build Hugo
+        run: |
+          npm ci
+          env HUGO_LANGUAGES_EN_BASEURL=/ HUGO_LANGUAGES_ZH_BASEURL=/ \
+          hugo --environment development --minify
+          pwd
+
+      - name: Verify Hugo output exists
+        run: |
+          test -d public/en || (echo "${{ env.WORKING_DIR }}/public/en not found"; exit 1)
+          echo "EN HTML count:" $(find public/en -type f -name '*.html' | wc -l)
+          test -d public/zh || (echo "${{ env.WORKING_DIR }}/public/zh not found"; exit 1)
+          echo "ZH HTML count:" $(find public/zh -type f -name '*.html' | wc -l)
+
+      - name: Check links in English
+        uses: lycheeverse/lychee-action@v2
+        with:
+          workingDirectory: ${{ env.WORKING_DIR }}
+          args: >-
+            --verbose
+            --no-progress
+            --root-dir "${{ github.workspace }}/${{ env.WORKING_DIR }}/public/en"
+            "./public/en/**/*.html"
+          fail: true
+          failIfEmpty: false
+          output: ./lychee/out.md
