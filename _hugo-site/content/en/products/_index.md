@@ -1,8 +1,8 @@
 ---
-title: Homepage
+title: Products
 ---
 
-## The Homepage
+## Products
 
 **Links**
 * [Products](products/)
