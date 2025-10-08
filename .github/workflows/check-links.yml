@@ -60,11 +60,14 @@ jobs:
 
       - name: Check links in English
         uses: lycheeverse/lychee-action@5c4ee84814c983aa7164eaee476f014e53ff3963 # v2.5.0
+        env:
+          LYCHEE_USE_HTML5EVER: "1"
         with:
           workingDirectory: ${{ env.WORKING_DIR }}
           args: >-
             --verbose
             --no-progress
+            --include-verbatim
             --dump
             --root-dir "${{ github.workspace }}/${{ env.WORKING_DIR }}/public/en"
             ./public/en
