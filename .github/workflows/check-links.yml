@@ -65,6 +65,7 @@ jobs:
           args: >-
             --verbose
             --no-progress
+            --dump
             --root-dir "${{ github.workspace }}/${{ env.WORKING_DIR }}/public/en"
             ./public/en
           fail: true
