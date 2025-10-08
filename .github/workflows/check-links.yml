@@ -70,4 +70,5 @@ jobs:
             ./public/en
           fail: true
           failIfEmpty: false
+          debug: true
           output: ./lychee/out.md
