@@ -1,0 +1,17 @@
+[en]
+  languageName = "English"
+  contentDir = "content/en"
+  baseURL = "https://example.org/"
+  weight = 1
+  [en.params]
+    languageISO = "EN"
+    locale = "en_US"
+
+[zh]
+  languageName = "Chinese"
+  contentDir = "content/zh"
+  baseURL = "https://example.org/"
+  weight = 2
+  [zh.params]
+    languageISO = "ZH"
+    locale = "zh_CN"
